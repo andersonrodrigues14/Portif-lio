@@ -1,31 +1,19 @@
 'use client'
 
 import { Button } from "@/app/components/button";
+import { CMSIcon } from "@/app/components/cms-icon";
+import { RichText } from "@/app/components/rich-text";
 import { TechBadge } from "@/app/components/tech-badge";
+import { HomePageInfo } from "@/app/types/page-info";
 import Image from "next/image";
 import { HiArrowNarrowRight } from "react-icons/hi";
-import { TbBrandGithub, TbBrandLinkedin, TbBrandYoutube, TbBrandWhatsapp } from "react-icons/tb";
 
-const MOCK_CONTACTS = [
-    {
-        url: 'https://github.com.br',
-        icon: <TbBrandGithub />
-    },
-    {
-        url: 'https://github.com.br',
-        icon: <TbBrandLinkedin />
-    },
-    {
-        url: 'https://github.com.br',
-        icon: <TbBrandYoutube />
-    },
-    {
-        url: 'https://github.com.br',
-        icon: <TbBrandWhatsapp />
-    },
-]
 
-export const HeroSection = () => {
+type HomeSectionProps = {
+    homeInfo: HomePageInfo
+}
+
+export const HeroSection = ({homeInfo}: HomeSectionProps) => {
     const handleContact = () => {
         const contactSection = document.querySelector('#contact');
         if(contactSection) {
@@ -41,14 +29,14 @@ export const HeroSection = () => {
                     <h2 className="text-4xl font-medium mt-2">Anderson Almeida Rodrigues</h2>
 
                     
-                    <p className="text-gray-400 my-6 text-sm sm:text-base">
-                        Olá, meu nome é Anderson Almeida Rodrigues e sou desenvolvedor full-stack apaixonado por tecnologia. Com mais de 2 anos de experiência. Meu objetivo é criar sistemas de ponta a ponta funcionais, sempre disposto a embarcar em projetos desafiadores. Estou sempre aberto a novas oportunidade e desafios.
-                    </p>
+                    <div className="text-justify text-gray-400 my-6 text-sm sm:text-base">
+                        <RichText content={homeInfo.introduction.raw} />
+                    </div>
                     
                     <div className="flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[340px]">
-                        {Array.from({length: 7}).map(( _, index ) => (
+                        {homeInfo.technologies.map((tech ) => (
                             <TechBadge 
-                                name="Django"
+                                name={tech.name}
                             />
                         ))}
                     </div>
@@ -60,14 +48,15 @@ export const HeroSection = () => {
                         </Button>
 
                         <div className="text-2xl text-gray-600 flex items-center h-20 gap-3">
-                            {MOCK_CONTACTS.map( (contact, index) => (
+                            {homeInfo.socials.map( (contact, index) => (
                                 <a 
                                     href={contact.url}
                                     key={`contact-${index}`}
                                     target="_blanck"
                                     className="hover:text-gray-100 transition-colors"
                                 >
-                                    {contact.icon}
+                                    <CMSIcon icon={contact.iconSvg} />
+                                    
                                 </a>
                             ))}
                         </div>
@@ -77,7 +66,7 @@ export const HeroSection = () => {
                 <Image 
                     width={420}
                     height={404}
-                    src="/images/profile-back.png"
+                    src= {homeInfo.profilePicture.url}
                     alt="Foto de perfil do Anderson Rodrigues"
                     className="w-[300px] h-[300px] lg:w-[420px] lg:h-[404px] mb-6 lg:mb-0 shadow-2xl rounded-lg object-cover"
                 />
