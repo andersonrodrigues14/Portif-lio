@@ -1,12 +1,9 @@
+import { CMSIcon } from "@/app/components/cms-icon"
+import { KnowTech as IKnowTech} from "@/app/types/projects"
 import { getRelativeTimeString } from "@/app/utils/get-relative-time"
-import { ReactNode } from "react"
 
 type KnowTechProps = {
-    tech: {
-        icon: ReactNode
-        name: string
-        startDate: string
-    }
+    tech: IKnowTech
 }
 
 export const KnowTech = ({tech}:KnowTechProps) => {
@@ -15,7 +12,7 @@ export const KnowTech = ({tech}:KnowTechProps) => {
         <div className="p-6 rounded-lg bg-gray-600/20 text-gray-500 flex-col gap-2 hover:text-emerald-500 hover:bg-gray-600/30 transition-all">
             <div className="flex items-center justify-between">
                 <p className="font-medium">{tech.name}</p>
-                {tech.icon}
+                <CMSIcon icon={tech.iconSvg}/>
             </div>
 
             <span>{relativeTime} de experiência</span>
