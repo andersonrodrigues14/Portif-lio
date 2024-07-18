@@ -1,12 +1,12 @@
 'use client'
 
-import { TechBadge } from '@/app/components/tech-badge'
-import { differenceInMonths, differenceInYears, format } from 'date-fns'
-import { ptBR } from 'date-fns/locale'
-import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { WorkExperience } from '@/app/types/work-experience'
-import { RichText } from '@/app/components/rich-text'
+import { TechBadge } from '@/app/components/tech-badge';
+import { differenceInMonths, differenceInYears, format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { WorkExperience } from '@/app/types/work-experience';
+import { RichText } from '@/app/components/rich-text';
 
 type ExperienceItemProps = {
   experience: WorkExperience
@@ -87,8 +87,8 @@ export const ExperienceItem = ({experience}: ExperienceItemProps) => {
                 <div className="flex gap-x-2 gap-y-3 flex-wrap lg:max-w-[350px] mb-8">
                 {technologies.map((tech, i) => (
                     <TechBadge
-                    name={tech.name}
-                    key={`experience-${companyName}-tech-${tech.name}`}
+                        name={tech.name}
+                        key={`experience-${companyName}-tech-${tech.name}`}
                     />
                 ))}
                 </div>

@@ -1,7 +1,6 @@
 import { SectionTitle } from "@/app/components/section-title";
-import { TbBrandNextjs } from "react-icons/tb";
 import { KnowTech } from "./known-tech";
-import { KnowTech as IKnowTech} from "@/app/types/projects";
+import { KnownTech as IKnowTech} from "@/app/types/projects";
 
 type KnownTechsProps = {
     techs: IKnowTech[]

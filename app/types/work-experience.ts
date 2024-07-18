@@ -1,5 +1,5 @@
-import type { RichTextContent } from '@graphcms/rich-text-types'
-import { KnowTech } from './projects'
+import type { RichTextContent } from '@graphcms/rich-text-types';
+import { KnownTech } from './projects';
 
 export type WorkExperience = {
   companyLogo: {
@@ -10,7 +10,7 @@ export type WorkExperience = {
   companyUrl: string
   startDate: string
   endDate: string
-  technologies: KnowTech[]
+  technologies: KnownTech[]
   description: {
     raw: RichTextContent
   }
