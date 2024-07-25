@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { WorkExperience } from '@/app/types/work-experience';
 import { RichText } from '@/app/components/rich-text';
+import { fadeUpAnimation, techBadgeAnimation } from '@/app/lib/animations';
 
 type ExperienceItemProps = {
   experience: WorkExperience
@@ -23,16 +24,30 @@ export const ExperienceItem = ({experience}: ExperienceItemProps) => {
         role,
         technologies,
       } = experience
-    
-      const startDate = new Date(experience.startDate)
+      
+      const dataStartOld = experience.startDate.split("-");
+      var ano = parseInt(dataStartOld[0]);
+      var mes = parseInt(dataStartOld[1]);
+      var dia = parseInt(dataStartOld[2]);
+      
+      const startDate = new Date(ano, (mes-1), dia)
     
       const formattedStartDate = format(startDate, 'MMM yyyy', { locale: ptBR })
-      const formattedEndDate = endDate
-        ? format(new Date(endDate), 'MMM yyyy', { locale: ptBR })
-        : 'O momento'
-    
-      const end = endDate ? new Date(endDate) : new Date()
-    
+
+      let formattedEndDate = 'O momento'
+      let end =  new Date()
+
+      if(endDate) {
+        const dataEndOld = experience.endDate.split("-");
+        var anoEnd = parseInt(dataEndOld[0]);
+        var mesEnd = parseInt(dataEndOld[1]);
+        var diaEnd = parseInt(dataEndOld[2]);
+
+        formattedEndDate = format(new Date(anoEnd, (mesEnd-1), diaEnd), 'MMM yyyy', { locale: ptBR })
+        end = new Date(anoEnd, (mesEnd-1), diaEnd)
+
+      }
+      
       const months = differenceInMonths(end, startDate)
       const years = differenceInYears(end, startDate)
       const monthsRemaining = months % 12
@@ -47,7 +62,11 @@ export const ExperienceItem = ({experience}: ExperienceItemProps) => {
           : `${months} mes${months > 1 ? 'es' : ''}`
 
     return(
-        <div className="grid grid-cols-[40px,1fr] gap-4 md:gap-10">
+        <motion.div 
+            className="grid grid-cols-[40px,1fr] gap-4 md:gap-10"
+            {...fadeUpAnimation}
+            transition={{ duration: 0.5 }}
+        >
             <div className="flex flex-col items-center gap-4">
                 <div className="rounded-full border border-gray-500 p-0.5">
                     <Image 
@@ -85,14 +104,16 @@ export const ExperienceItem = ({experience}: ExperienceItemProps) => {
                     Competência
                 </p>
                 <div className="flex gap-x-2 gap-y-3 flex-wrap lg:max-w-[350px] mb-8">
-                {technologies.map((tech, i) => (
+                {technologies.map((tech, index) => (
                     <TechBadge
                         name={tech.name}
                         key={`experience-${companyName}-tech-${tech.name}`}
+                        {...techBadgeAnimation}
+                        transition={{ duration: 0.2, delay: index * 0.1 }}
                     />
                 ))}
                 </div>
             </div>
-        </div>  
+        </motion.div>  
     )
 }

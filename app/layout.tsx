@@ -5,7 +5,6 @@ import { Header } from './components/header'
 import { ContactForm } from './components/contact-form'
 import { Footer } from './components/footer'
 import { BackToTop } from './components/back-to-top'
-import { url } from 'inspector'
 import { Toaster } from './components/toaster'
 
 export const metadata = {

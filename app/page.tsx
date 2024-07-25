@@ -26,6 +26,7 @@ const getPageData = async (): Promise<HomePageData> => {
           iconSvg
           name
           startDate
+          endDate
         }
         highlightProjects {
           slug

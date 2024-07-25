@@ -4,6 +4,7 @@ export type KnownTech = {
   iconSvg: string
   name: string
   startDate: string
+  endDate: string
 }
 
 export type Technology = {
