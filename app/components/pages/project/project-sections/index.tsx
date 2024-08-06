@@ -22,14 +22,25 @@ export const ProjectSections = ({ sections }:ProjectSectionsProps) => {
                     <h2 className="text-2xl md:text-3xl font-medium text-gray-300">
                         {section.title}
                     </h2>
-                    <Image 
-                        src={section.image.url}
-                        width={1080}
-                        height={672}
-                        className="w-full aspect-auto rounded-lg object-cover"
-                        alt={`Imagem da sessão ${section.title}`}
-                        unoptimized
-                    />
+                    {section.image &&
+                        <Image 
+                            src={section.image.url}
+                            width={1080}
+                            height={672}
+                            className="w-full aspect-auto rounded-lg object-cover"
+                            alt={`Imagem da sessão ${section.title}`}
+                            unoptimized
+                        />
+                    }
+                    {section.video &&
+                        <iframe
+                            src={section.video}
+                            width={1080}
+                            height={672}
+                            className="w-full aspect-auto rounded-lg object-cover"
+                            allowFullScreen
+                        />
+                    }
                 </motion.div>
             ))}
         </section>

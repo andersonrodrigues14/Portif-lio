@@ -25,6 +25,7 @@ const getProjectDetails = async (slug: string): Promise<ProjectPageData> => {
         image {
           url
         }
+        video
       }
       title
       shortDescription

@@ -16,6 +16,7 @@ export type ProjectSection = {
   image: {
     url: string
   }
+  video: string
 }
 
 export type Project = {

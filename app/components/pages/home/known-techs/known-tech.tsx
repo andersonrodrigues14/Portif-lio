@@ -10,8 +10,7 @@ type KnowTechProps = {
 
 export const KnowTech = ({tech}:KnowTechProps) => {
     let relativeTime = 'Sem tempo'
-    
-    console.log(tech)
+
     if(tech.endDate && tech.startDate){
         const dataStartOld = tech.startDate.split("-");
         var ano = parseInt(dataStartOld[0]);
