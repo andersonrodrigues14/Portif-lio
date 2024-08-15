@@ -19,7 +19,7 @@ export const KnowTech = ({tech}:KnowTechProps) => {
       
         const startDate = new Date(ano, (mes-1), dia)
 
-        let formattedEndDate = 'O momento'
+        let formattedEndDate = 'Até o momento'
         let end =  new Date()
 
         if(tech.endDate) {

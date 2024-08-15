@@ -34,7 +34,7 @@ export const ExperienceItem = ({experience}: ExperienceItemProps) => {
     
       const formattedStartDate = format(startDate, 'MMM yyyy', { locale: ptBR })
 
-      let formattedEndDate = 'O momento'
+      let formattedEndDate = 'Até o momento'
       let end =  new Date()
 
       if(endDate) {
